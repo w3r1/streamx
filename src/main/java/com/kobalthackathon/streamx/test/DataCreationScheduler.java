@@ -7,10 +7,12 @@ import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 
 @EnableBinding(Source.class)
 @EnableScheduling
 @AllArgsConstructor
+@Service
 public class DataCreationScheduler {
 
     private final Source source;
