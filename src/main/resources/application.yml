@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          binder: kafka
+        output:
+          binder: kafka
+
+      kafka:
+        binder:
+          brokers: localhost:29092
+          auto-add-partitions: true
