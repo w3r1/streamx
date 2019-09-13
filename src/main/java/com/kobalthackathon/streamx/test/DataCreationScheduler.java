@@ -4,24 +4,20 @@ import com.kobalthackathon.streamx.test.domain.Movie;
 import lombok.AllArgsConstructor;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Source;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.support.MessageBuilder;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
-@Controller
 @EnableBinding(Source.class)
+@EnableScheduling
 @AllArgsConstructor
-public class DataCreationController {
+public class DataCreationScheduler {
 
     private final Source source;
 
-    @GetMapping("/addmovie")
-    public ResponseEntity getAddMovie() {
+    @Scheduled(fixedRate = 1000)
+    private void createAndPostMovie() {
         Movie movie = new Movie("Indiana Jones " + ((int)(Math.random() * 100)));
         source.output().send(MessageBuilder.withPayload(movie).build());
-
-        return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 }
