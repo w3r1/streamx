@@ -2,7 +2,9 @@ spring:
   cloud:
     stream:
       bindings:
-        movies:
+        input:
+          binder: kafka
+        output:
           binder: kafka
 
       kafka:

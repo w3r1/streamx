@@ -10,7 +10,7 @@ import org.springframework.integration.annotation.MessageEndpoint;
 @MessageEndpoint
 public class DataReader {
 
-    @StreamListener("movies")
+    @StreamListener(Sink.INPUT)
     void logMessage(Movie movie) {
         System.out.println(movie.getMovieName());
     }
