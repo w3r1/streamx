@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        movies-in:
+          binder: kafka
+          destination: movies
+        movies-out:
+          binder: kafka
+          destination: movies
+
+      kafka:
+        binder:
+          brokers: localhost:9092

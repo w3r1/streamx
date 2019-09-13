@@ -1,11 +1,17 @@
 package com.kobalthackathon.streamx.test.domain;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class Movie {
 
+    @JsonProperty("movieName")
     private String movieName;
+
+    @JsonCreator
+    public Movie(@JsonProperty("movieName") String movieName) {
+        this.movieName = movieName;
+    }
 }
